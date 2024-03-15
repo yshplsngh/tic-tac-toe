@@ -1,10 +1,9 @@
 import './App.css'
-import {useState} from "react";
+import {useState} from "react"
 import x from './assets/x.png'
 import o from './assets/o.png'
 
 function App() {
-
     const winCases: number[][] = [
         [1, 2, 3],
         [4, 5, 6],
@@ -17,7 +16,7 @@ function App() {
     ]
     const [block, setBlock] = useState(Array(9).fill(null))
     const winArray = Array.from({length: 8}, () => Array(3).fill(""));
-    const [whoWin,setWhoWin] = useState('')
+    const [whoWin, setWhoWin] = useState('')
     const [winState, setWinState] = useState(winArray)
 
     const gameState = ["X", "O"]
@@ -41,11 +40,11 @@ function App() {
             }
             for (let p = 0; p < 8; p++) {
                 for (let q = 0; q < 3; q++) {
-                    if (winCases[p][q] === i+1){
+                    if (winCases[p][q] === i + 1) {
                         const win = [...winState]
-                        if(status===gameState[0]){
+                        if (status === gameState[0]) {
                             win[p][q] = gameState[0]
-                        }else if(status===gameState[1]){
+                        } else if (status === gameState[1]) {
                             win[p][q] = gameState[1]
                         }
                         setWinState(win)
@@ -53,11 +52,11 @@ function App() {
                 }
             }
             const newWin = [...winState]
-            for(let val=0;val<8;val++){
-                if(newWin[val].every((ele)=>ele===gameState[0])){
+            for (let val = 0; val < 8; val++) {
+                if (newWin[val].every((ele) => ele === gameState[0])) {
                     console.log('X win')
                     setWhoWin('X')
-                }else if(newWin[val].every((ele)=>ele===gameState[1])){
+                } else if (newWin[val].every((ele) => ele === gameState[1])) {
                     console.log('O win')
                     setWhoWin('O')
                 }
@@ -70,7 +69,7 @@ function App() {
         // console.log(status)
     }
 
-    const handleReset=()=>{
+    const handleReset = () => {
         setWhoWin('')
         setWinState(winArray)
         setStatus(gameState[0])
@@ -86,26 +85,30 @@ function App() {
     }
 
     const matchDraw = block.every(Boolean) && !whoWin.length
-    const setClick = whoWin || matchDraw ? 'notAllowPointer fadeBack':'allowPointer'
+    const setClick = whoWin || matchDraw ? 'notAllowPointer fadeBack' : 'allowPointer'
 
     return (
-        <section className={'parent relative'}>
-            <h1 className={''}>{whoWin || matchDraw ?'':status+' Chance'}</h1>
-            <div id={'board'} className={`board ${setClick}`}>
+        <section className={'parent relative bg-[#0f172a]'}>
+            {whoWin || matchDraw ? '' : (
+                <div className={'w-44 h-14 flex justify-center items-center rounded-2xl border-2 border-[#14bdac]'}>
+                    <div className={'flex justify-center items-center'}>
+                        <span className={'flex text-2xl m-2 text-[#14bdac]'}>{status}</span>
+                        <p className={'text-amber-50'}>chance</p>
+                    </div>
+                </div>
+            )}
+            <div id={'board'} className={`board ${setClick} mt-10 rounded-3xl`}>
                 {cells}
             </div>
-            {whoWin ?(
-                <div className={'absolute bg-gray-300 w-60 h-32 rounded-xl flex flex-col justify-center items-center'}>
-                    <h1>{whoWin} has won the match</h1>
-                    <button className={'bg-blue-700 p-2 text-amber-50 rounded-lg mt-3'} onClick={handleReset}>Play again</button>
-                </div>
-            ):''}
-            {matchDraw ?(
-                <div className={'absolute bg-gray-300 w-60 h-32 rounded-xl flex flex-col justify-center items-center'}>
-                    <h1>Match Draw</h1>
-                    <button className={'bg-blue-700 p-2 text-amber-50 rounded-lg mt-3'} onClick={handleReset}>Play again</button>
-                </div>
-            ):''}
+            {(matchDraw || whoWin) &&
+                <div className={'absolute bg-[#0f172a] w-60 h-32 rounded-xl flex flex-col justify-center items-center'}>
+                    {matchDraw && <h1 className={'text-red-600 text-xl'}>Match Draw</h1>}
+                    {whoWin && <h1 className={'text-md flex text-green-600'}><p className={'mr-1'}>{whoWin}</p> has won the match</h1>}
+                    <button className={' p-2 text-amber-50 border-2 border-[#14bdac] rounded-lg mt-3'}
+                            onClick={handleReset}>
+                        Play again
+                    </button>
+                </div>}
         </section>
     )
 }

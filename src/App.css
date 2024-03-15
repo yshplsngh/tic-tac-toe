@@ -12,7 +12,7 @@
   background-size: 500px 500px;
   height: 500px;
   width: 500px;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   display: grid;
   grid-template-columns: 146px 120px 146px;
   grid-template-rows: 136px 117px 137px;
@@ -20,9 +20,11 @@
   row-gap: 23px;
   box-shadow: 10px 20px 20px grey;
 }
-.board .cell{
-  border: 1px solid red;
-}
+
+/*.board .cell{*/
+/*  border: 1px solid red;*/
+/*}*/
+
 .allowPointer{
   pointer-events: all;
 }
