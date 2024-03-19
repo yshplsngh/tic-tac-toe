@@ -10,34 +10,23 @@ Make sure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.co
 1. Clone or Download the repository
 
 	```
-	$ git clone https://github.com/soumanpaul/Developers-Profile-web-app
-	$ cd Developers-Profile-web-app
+	$ git clone https://github.com/yshplsngh/tic-tac-toe
+	$ cd tic-tac-toe
 	```
+ 
 2. Install Dependencies
-   + run this commend in project directory
 	
     ```
 	  $ npm install
     ```
-   + run this commend in ***client***  directory
-   
-    ```
-      $ yarn install
-    ```
 
-
-2. Edit configuration file in /config/default.json with your credentials(see [Setup Configurations](#configurations)).
-
-
-5. Start the application
-
-  + To run both frontend and backend server together run :
+3. Start the application
 
 	```
 	$ npm run dev
 	```
 
-Your app should now be running on [localhost:3000](http://localhost:3000/).
+Your app should now be running on [localhost:5173](http://localhost:5173/).
 
 # ScreenShot
 
